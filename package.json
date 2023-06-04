@@ -24,7 +24,6 @@
     "web-vitals": "^2.1.4"
   },
   "homepage": "https://taniarascia.github.io/react-tutorial",
-
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -52,7 +51,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
     "@types/react-plotly.js": "^2.6.0",
-    "@babel/plugin-proposal-private-property-in-object":"^7.21.10"
+    "gh-pages": "^5.0.0"
   }
 }
