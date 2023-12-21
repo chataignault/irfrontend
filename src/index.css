@@ -13,13 +13,13 @@ code {
 }
 
 /* container */
-.two-columns {
+/* .two-columns {
   display:flex;
   width: 80%;
-}
+} */
 
 /* columns */
-.two-columns > * {
+/* .two-columns > * {
   width:70%;
   padding:1rem;
-}
+} */

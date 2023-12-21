@@ -73,7 +73,7 @@ export default function DataTable() {
 
 
     return (
-        <div>
+        <div className='Main'>
             <Container fluid="md">
             <Col>
               <Row>

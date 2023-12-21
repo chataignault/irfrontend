@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   color: #61dafb;
+  width: 100%
 }
 
 .App-logo {
@@ -23,6 +24,15 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: rgb(255, 255, 255);
+  width: 100%
+}
+
+.GridEx {
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 300px;
+  /* display: flex; */
 }
 
 .App-link {
