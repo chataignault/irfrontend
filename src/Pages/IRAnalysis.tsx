@@ -1,6 +1,7 @@
 import React, {useState, useRef, useMemo} from 'react'
 import Graph from '../Components/Graphs'
 import DataTable from '../Components/DataTable'
+import LineChartExample from '../Components/LineChart';
 
 import Card from '@mui/material/Card';
 import { CircularProgress } from '@mui/material';
@@ -88,7 +89,7 @@ function GridEx() {
 export default class IRAnalysis extends React.Component {
     render() {
         return (
-            <div>
+            <div main-container>
                 <Box >
                     <Grid container spacing={2} md={12}>
                         <Grid item md={8}>
@@ -97,8 +98,11 @@ export default class IRAnalysis extends React.Component {
                         <Grid item md={4}>  
                             <DataTable/>
                         </Grid>
-                        <Grid item md={6}>
+                        <Grid item md={12}>
                             <Graph/>            
+                        </Grid>
+                        <Grid item md={12}>
+                            <LineChartExample/>
                         </Grid>
                     </Grid>
                 </Box>

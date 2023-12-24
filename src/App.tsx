@@ -23,9 +23,9 @@ class App extends Component {
         <h1>
           Title
         </h1>
-        <IRAnalysis/>
-
-        
+        <div className="main-element">
+          <IRAnalysis/>
+        </div>
       </header>
       
     </div>
