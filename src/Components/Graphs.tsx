@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Plot from "react-plotly.js";
 import TransferList from "./TransferList";
-// import { MultiSelect } from "react-multi-select-component";
 
 const options = [
   { label: "Grapes ", value: "grapes" },
@@ -9,36 +8,31 @@ const options = [
   { label: "Strawberry ", value: "strawberry", disabled: true },
 ];
 
-export default class Graph extends React.Component {
-  state = {
-    IRData: [[]] as number[][],
-    selected: [] as string[],
-  };
-
-  render() {
-    // const [selected, setSelected] = useState([])
+export default function Graph() {
+  const [state, setState] = useState({
+    IRData: [[]] as any, //number[][],
+    selected: [] as any, //string[],
+  });
 
     const getData = () => {
-      fetch("/ir_analysis")
+      fetch("http://127.0.0.1:8000/ir_analysis/")
         .then((response) => {
           if (response.ok) {
             return response.json();
           }
         })
         .then((data) => {
-          this.setState({ IRData: JSON.parse(data).array });
+          console.log("PCA: ")
+          console.log(data);
+          setState({ IRData: JSON.parse(data).array, selected: [] });
         });
     };
-    // useEffect( () => {
-    //   getData()
-    // })
+    useEffect( () => {
+      getData()
+    }, [])
 
-    // const n_curves = this.state.IRData.length
-    // const len = this.state.IRData[0].length
-    // if (n_curves > 0){
-    //   const len = this.state.IRData.length}
 
-    const curves = this.state.IRData.map((curve, idx) => {
+    const curves = state.IRData.map((curve:any, idx:any) => {
       return {
         x: Array(curve.length).keys(),
         y: curve,
@@ -48,35 +42,13 @@ export default class Graph extends React.Component {
 
     return (
       <>
-        {/* <MultiSelect
-        className='multiselect'
-        value={selected}
-        options={options}
-        onChange={setSelected}
-        labelledBy='Select'/> */}
         <button onClick={getData}>Plot PCA</button>
-        <TransferList />
         <Plot
           data={
             curves
-            //   [
-            //   {
-            //     x: [1, 2, 3],
-            //     y: [2, 6, 3],
-            //     type: 'scatter',
-            //     mode: 'lines+markers',
-            //     marker: {color: 'red'},
-            //   },
-            //   {type: 'bar', x: [1, 2, 3], y: [2, 5, 3]},
-            //   {x: Array(len).keys(),
-            //    y: this.state.IRData[0],
-            //    type: 'scatter',
-            //    name: 'component 1'}
-            // ]
           }
           layout={{ title: "PCA", autosize: true }}
         />
       </>
     );
   }
-}

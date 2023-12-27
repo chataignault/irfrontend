@@ -44,9 +44,6 @@ export default function DataTable() {
     try {
       fetch(`http://127.0.0.1:8000/ir_data/${specifyFile}?n_rows=${nRows}`)
         .then((response) => {
-          // if (response.ok){
-          //     return response.json()
-          // }
           return response.json();
         })
         .catch((err) => alert(`The backend surely cant be reached \n ${err}`))
@@ -62,18 +59,17 @@ export default function DataTable() {
         })
         .catch(
           (
-            error, //alert(error.message)
+            error, 
           ) => console.log(error),
         );
     } catch (e) {
       console.log("Error fetch data", e);
-      // setHeader(["Backend not connected"])
     }
   };
 
   useEffect(() => {
     getData();
-  }, []); // gets called only once at refresh
+  }, []); 
 
   return (
     <div className="Main">

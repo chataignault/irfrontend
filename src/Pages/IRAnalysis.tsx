@@ -26,7 +26,7 @@ function GridEx() {
   const gridRef = useRef<AgGridReact>(null);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(
-    () => ({ height: "100%", width: "100%", minWidth: 200 }),
+    () => ({ height: "100%", width: "100%", minWidth: 200}),
     [],
   );
   const defaultColDef = useMemo<ColDef>(() => {
@@ -34,7 +34,6 @@ function GridEx() {
       flex: 1,
       minWidth: 100,
       filter: true,
-      //   maxWidth: 800,
     };
   }, []);
   // Row Data: The data to be displayed.
@@ -100,11 +99,11 @@ export default class IRAnalysis extends React.Component {
     return (
       <div main-container>
         <Box>
-          <Grid container spacing={2} md={12}>
-            <Grid item md={8}>
+          <Grid container  md={12} rowSpacing={10}>
+            <Grid item md={8} sx={{ m: 0.5 }} >
               <GridEx />
             </Grid>
-            <Grid item md={4}>
+            <Grid item md={3.5}>
               <DataTable />
             </Grid>
             <Grid item md={12}>
