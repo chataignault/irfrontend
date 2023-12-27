@@ -1,23 +1,17 @@
-import React, { Component } from 'react'
-
+import React, { Component } from "react";
 
 export const TableHeader = (props) => {
   const head = props.header.map((el) => {
-    return (
-        <th>{el}</th>
-    )
-  })
+    return <th>{el}</th>;
+  });
   return (
     <thead>
-      <tr>
-        {head}
-      </tr>
+      <tr>{head}</tr>
     </thead>
-  )
-}
+  );
+};
 
 export const TableBody = (props) => {
-
   // const extractRow = (row, index) => {
   //   return (
   //     <tr key={index}>
@@ -28,29 +22,30 @@ export const TableBody = (props) => {
   // }
 
   // const content = JSON.parse(props);
-  console.log(props.content)
-  const rows = props.content.map((row, index) => {    
+  console.log(props.content);
+  const rows = props.content.map((row, index) => {
     return (
       <tr key={index}>
-        {Object.values(row).map((value) => <td>{value}</td> )}
-      </tr>)
-      }
-    )
+        {Object.values(row).map((value) => (
+          <td>{value}</td>
+        ))}
+      </tr>
+    );
+  });
 
-  return <tbody>{rows}</tbody>
-}
+  return <tbody>{rows}</tbody>;
+};
 
 export class Table extends Component {
   render() {
-
-    const {content} = this.props
-    const {header} = this.props
+    const { content } = this.props;
+    const { header } = this.props;
 
     return (
       <table>
-        <TableHeader header={header}/>
-        <TableBody content={content}/>
+        <TableHeader header={header} />
+        <TableBody content={content} />
       </table>
-    )
+    );
   }
 }

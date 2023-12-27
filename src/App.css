@@ -20,7 +20,6 @@
   height: 400px; /* Adjust height as needed */
 }
 
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -54,21 +53,20 @@
   }
 }
 
-
 .App-button {
   transition-duration: 0.4s;
-  border: .2em solid #4daeb3;
+  border: 0.2em solid #4daeb3;
   width: 10em;
   height: 2em;
-  align-items: center;  
+  align-items: center;
 }
 
 button {
   transition-duration: 0.4s;
-  border: .2em solid #4daeb3;
+  border: 0.2em solid #4daeb3;
   width: 10em;
   height: 2em;
-  align-items: center;  
+  align-items: center;
 }
 
 .App-button:hover {
@@ -86,63 +84,63 @@ hr {
 }
 
 .App-table {
-  border-top:1px solid green;
-  border-left:1px solid red; 
+  border-top: 1px solid green;
+  border-left: 1px solid red;
 }
 
 td,
 th {
-    border: 1px solid rgb(190, 190, 190);
-    padding: 10px;
+  border: 1px solid rgb(190, 190, 190);
+  padding: 10px;
 }
 
 td {
-    text-align: center;
+  text-align: center;
 }
 
 tr:nth-child(even) {
-    background-color: #eeeeee74;
+  background-color: #eeeeee74;
 }
 
-th[scope='col'] {
-    background-color: #696969;
-    color: #fff;
+th[scope="col"] {
+  background-color: #696969;
+  color: #fff;
 }
 
-th[scope='row'] {
-    background-color: #d7d9f2;
+th[scope="row"] {
+  background-color: #d7d9f2;
 }
 
 caption {
-    padding: 10px;
-    caption-side: bottom;
+  padding: 10px;
+  caption-side: bottom;
 }
 
 table {
-    border-collapse: collapse;
-    border: 2px solid rgba(200, 200, 200, 0.805);
-    letter-spacing: 1px;
-    /* font-family: sans-serif; */
-    font-size: 0.8rem;
+  border-collapse: collapse;
+  border: 2px solid rgba(200, 200, 200, 0.805);
+  letter-spacing: 1px;
+  /* font-family: sans-serif; */
+  font-size: 0.8rem;
 }
 
 button,
 select,
 input {
-  margin: .5em;
+  margin: 0.5em;
 }
 
 .Table-n-rows {
-  width: 4em
+  width: 4em;
 }
 
 .multiselect {
   margin: 1em;
-  color: rgb(0, 0, 0)
+  color: rgb(0, 0, 0);
 }
 
 .TransferList {
-  margin: 1em
+  margin: 1em;
 }
 
 .main-container {
@@ -157,5 +155,5 @@ div {
 }
 
 .main-element {
-  width: 90%
+  width: 90%;
 }
