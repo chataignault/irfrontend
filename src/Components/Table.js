@@ -12,16 +12,6 @@ export const TableHeader = (props) => {
 };
 
 export const TableBody = (props) => {
-  // const extractRow = (row, index) => {
-  //   return (
-  //     <tr key={index}>
-  //       {Object.values(row).map((val, idx) => {
-  //        <td key={idx}>{val}</td>})}
-  //     </tr>
-  //   )
-  // }
-
-  // const content = JSON.parse(props);
   console.log(props.content);
   const rows = props.content.map((row, index) => {
     return (

@@ -1,16 +1,15 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import Graph from "../Components/Graphs";
 import DataTable from "../Components/DataTable";
 import LineChartExample from "../Components/LineChart";
+import connexionStore from "../connexionStore"
 
-import Card from "@mui/material/Card";
-import { CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
-import { ColDef, GridOptions } from "ag-grid-community";
+import { ColDef } from "ag-grid-community";
 
 interface DataTypeEx {
   mission: string;
@@ -26,7 +25,7 @@ function GridEx() {
   const gridRef = useRef<AgGridReact>(null);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(
-    () => ({ height: "100%", width: "100%", minWidth: 200}),
+    () => ({ height: "100%", width: "100%", minWidth: 200 }),
     [],
   );
   const defaultColDef = useMemo<ColDef>(() => {
@@ -78,9 +77,10 @@ function GridEx() {
     { field: "rocket" },
   ]);
 
+
   return (
     <div className="GridEx">
-      <h2> Here</h2>
+      <h2> ag-grid example</h2>
       <div style={containerStyle} className="ag-theme-quartz">
         <AgGridReact
           ref={gridRef}
@@ -94,39 +94,50 @@ function GridEx() {
   );
 }
 
-export default class IRAnalysis extends React.Component {
-  render() {
-    return (
-      <div main-container>
-        <Box>
-          <Grid container  md={12} rowSpacing={10}>
-            <Grid item md={8} sx={{ m: 0.5 }} >
-              <GridEx />
-            </Grid>
-            <Grid item md={3.5}>
-              <DataTable />
-            </Grid>
-            <Grid item md={12}>
-              <Graph />
-            </Grid>
-            <Grid item md={12}>
-              <LineChartExample />
-            </Grid>
-          </Grid>
-        </Box>
+const IRAnalysis: React.FC = () => {
 
-        <DataTable />
-        <CircularProgress value={1} />
-        <Card variant="outlined">{<p>Nothing</p>}</Card>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </div>
-    );
-  }
+  const [data, setData] = useState<number[]>([])
+
+  const getData = () => {
+    // fetch(connexionStore['local'])
+    //   .then((response) => {
+    //     if (response.ok) {
+    //       return response.json();
+    //     }
+    //   })
+    //   .then((data) => {
+    //     console.log("PCA: ");
+    //     console.log(data);
+    //     setData(JSON.parse(data).array);
+    //   });
+    setData([1, 2, 3, 3, 1, 2, 3])
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <div main-container>
+      <Box>
+        <Grid container md={12} rowSpacing={10}>
+          <Grid item md={8} sx={{ m: 0.5 }}>
+            <GridEx />
+          </Grid>
+          <Grid item md={3.5}>
+            <DataTable />
+          </Grid>
+          <Grid item md={12}>
+            <Graph data={data} />
+          </Grid>
+          <Grid item md={12}>
+            <LineChartExample />
+          </Grid>
+        </Grid>
+      </Box>
+      <DataTable />
+    </div>
+  );
 }
+
+
+export default IRAnalysis;

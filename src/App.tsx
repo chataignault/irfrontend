@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import IRAnalysis from "./Pages/IRAnalysis";
-import { Component } from "react";
+import { Component, useEffect } from "react";
 
 class App extends Component {
   // defines class attributes
@@ -9,6 +9,10 @@ class App extends Component {
     table: [] as (string | number)[],
     header: [] as string[],
   };
+
+  componentDidMount(): void {
+    document.title = "IRData";
+  }
 
   render() {
     return (

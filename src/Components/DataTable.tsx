@@ -10,16 +10,6 @@ export default function DataTable() {
   const [body, setBody] = useState([] as (string | number)[]);
   const [nRows, setnRows] = useState(10);
 
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
-
-  const handleCounter = () => {
-    setCount(count + 1);
-  };
-
   const handleFileChange = (inputValue: string) => {
     setSpecifyFile(inputValue);
   };
@@ -57,11 +47,7 @@ export default function DataTable() {
           console.log(Object.keys(data_json[0]));
           console.log("Went there");
         })
-        .catch(
-          (
-            error, 
-          ) => console.log(error),
-        );
+        .catch((error) => console.log(error));
     } catch (e) {
       console.log("Error fetch data", e);
     }
@@ -69,17 +55,17 @@ export default function DataTable() {
 
   useEffect(() => {
     getData();
-  }, []); 
+  }, []);
 
   return (
     <div className="Main">
+      <h3>Hand-made table</h3>
       <Container fluid="md">
         <Col>
           <Row>
             <button
               onClick={() => {
                 getData();
-                handleCounter();
               }}
               className="App-button"
             >
