@@ -11,7 +11,7 @@ class App extends Component {
   };
 
   componentDidMount(): void {
-    document.title = "IRData";
+    document.title = "Rates dashboard";
   }
 
   render() {

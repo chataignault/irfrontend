@@ -32,7 +32,7 @@ export default function DataTable() {
   const getData = () => {
     console.log("Start connection");
     try {
-      fetch(`http://127.0.0.1:8000/ir_data/${specifyFile}?n_rows=${nRows}`)
+      fetch(`http://127.0.0.1:8000/yf/ticker/^${specifyFile}?n_rows=${nRows}`)
         .then((response) => {
           return response.json();
         })
