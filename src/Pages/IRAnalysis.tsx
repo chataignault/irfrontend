@@ -11,6 +11,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { ColDef } from "ag-grid-community";
+import Select from 'react-select';
 
 interface DataTypeEx {
   mission: string;
@@ -147,7 +148,12 @@ const IRAnalysis: React.FC = () => {
   }, []);
 
   const onCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCountry(event.target.value);
+    if (event?.target) {
+      setSelectedCountry(event.target.value)
+    }
+    else {
+      setSelectedCountry(event.value);
+    }
   };
 
   return (
@@ -155,6 +161,28 @@ const IRAnalysis: React.FC = () => {
       <Box>
         <Grid container md={12} rowSpacing={10}>
           <Grid item md={8} sx={{ m: 0.5 }}>
+          <div
+              style={{
+                color: 'hsl(0, 0%, 40%)',
+                display: 'inline-block',
+                fontSize: 14,
+                fontStyle: 'italic',
+                marginTop: '0em',
+              }}
+            ><Select
+              className="basic-single"
+              classNamePrefix="select"
+              name="Country Code"
+              value={{value:selectedCountry, label:selectedCountry}}
+              options={countryCodes.map(code => ({
+                value: code,
+                label: code
+              }))}
+              onChange={onCountryCodeChange}
+              placeholder="Select a country"
+              isSearchable={true}
+            />
+            </div>
             <select onChange={onCountryCodeChange} value={selectedCountry}>
               {countryCodes.map((code) => (
                 <option key={code} value={code}>
