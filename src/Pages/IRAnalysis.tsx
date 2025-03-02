@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import Graph from "../Components/Graphs";
 import DataTable from "../Components/DataTable";
 import LineChartExample from "../Components/LineChart";
-import connexionStore from "../connexionStore"
+import connexionStore from "../connexionStore";
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -77,7 +77,6 @@ function GridEx() {
     { field: "rocket" },
   ]);
 
-
   return (
     <div className="GridEx">
       <h2> ag-grid example</h2>
@@ -95,8 +94,8 @@ function GridEx() {
 }
 
 const IRAnalysis: React.FC = () => {
-
-  const [data, setData] = useState<number[]>([])
+  const [data, setData] = useState<number[]>([]);
+  const [specifyFile, setSpecifyFile] = useState("FR");
 
   const getData = () => {
     // fetch(connexionStore['local'])
@@ -110,17 +109,29 @@ const IRAnalysis: React.FC = () => {
     //     console.log(data);
     //     setData(JSON.parse(data).array);
     //   });
-    setData([1, 2, 3, 3, 1, 2, 3])
+    setData([1, 2, 3, 3, 1, 2, 3]);
   };
   useEffect(() => {
     getData();
   }, []);
+  const handleFileChange = (inputValue: string) => {
+    setSpecifyFile(inputValue);
+  };
+  const onFileChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleFileChange(event.target.value);
+  };
 
   return (
     <div main-container>
       <Box>
         <Grid container md={12} rowSpacing={10}>
           <Grid item md={8} sx={{ m: 0.5 }}>
+            <select onChange={onFileChangeSelect}>
+              <option value="FR">FR</option>
+              <option value="FVX">5Y</option>
+              <option value="TNX">10Y</option>
+              <option value="TYX">30Y</option>
+            </select>
             <GridEx />
           </Grid>
           <Grid item md={3.5}>
@@ -137,7 +148,6 @@ const IRAnalysis: React.FC = () => {
       <DataTable />
     </div>
   );
-}
-
+};
 
 export default IRAnalysis;
