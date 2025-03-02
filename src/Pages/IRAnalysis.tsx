@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
+// import {setError} from "react-hook-form";
 import Graph from "../Components/Graphs";
 import DataTable from "../Components/DataTable";
 import LineChartExample from "../Components/LineChart";
@@ -95,8 +96,37 @@ function GridEx() {
 
 const IRAnalysis: React.FC = () => {
   const [data, setData] = useState<number[]>([]);
-  const [specifyFile, setSpecifyFile] = useState("FR");
+  const [selectedCountry, setSelectedCountry] = useState<String>("");
+  const [countryCodes, setCountryCodes] = useState<String[]>([]);
 
+  const getCountryCodes = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/ka/countries");
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+
+      var countryCodes_ = await response.json();
+      var countryCodes_ = JSON.parse(countryCodes_);
+      setCountryCodes(countryCodes_);
+      if (Array.isArray(countryCodes_)) {
+        console.log("Setting countryCodes state with:", countryCodes_);
+        setCountryCodes(countryCodes_);
+
+        if (countryCodes_.length > 0) {
+          setSelectedCountry(countryCodes_[0]);
+        }
+      } else {
+        console.error("API didn't return an array:", countryCodes_);
+      }
+      return countryCodes_;
+    } catch (error) {
+      console.error("Failed to fetch country codes:", error);
+      // setError('Failed to load country codes.');
+      return [];
+    }
+  };
   const getData = () => {
     // fetch(connexionStore['local'])
     //   .then((response) => {
@@ -112,13 +142,12 @@ const IRAnalysis: React.FC = () => {
     setData([1, 2, 3, 3, 1, 2, 3]);
   };
   useEffect(() => {
+    getCountryCodes();
     getData();
   }, []);
-  const handleFileChange = (inputValue: string) => {
-    setSpecifyFile(inputValue);
-  };
-  const onFileChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    handleFileChange(event.target.value);
+
+  const onCountryCodeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountry(event.target.value);
   };
 
   return (
@@ -126,11 +155,12 @@ const IRAnalysis: React.FC = () => {
       <Box>
         <Grid container md={12} rowSpacing={10}>
           <Grid item md={8} sx={{ m: 0.5 }}>
-            <select onChange={onFileChangeSelect}>
-              <option value="FR">FR</option>
-              <option value="FVX">5Y</option>
-              <option value="TNX">10Y</option>
-              <option value="TYX">30Y</option>
+            <select onChange={onCountryCodeChange} value={selectedCountry}>
+              {countryCodes.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
             </select>
             <GridEx />
           </Grid>
