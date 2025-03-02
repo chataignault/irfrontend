@@ -10,6 +10,7 @@ npm start
 ```
 
 prettier format :
+
 ```bash
 npx prettier . --write
 ```
